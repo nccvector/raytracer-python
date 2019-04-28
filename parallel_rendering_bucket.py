@@ -332,7 +332,7 @@ class plane():
 objects = [
     sphere(vector3(-300.0,0.0,300.0), 100.0, color(0.2,0.2,0.2), material_type='Reflective'), 
     sphere(vector3(-150.0,0.0,150.0), 100.0, color(0.9,0.9,0.9), material_type='Reflective'), 
-    sphere(vector3(0.0,0.0,0.0), 100.0, color(1.0,0.1,0.1), material_type='Reflective'), 
+    sphere(vector3(0.0,0.0,0.0), 100.0, color(1.0,0.1,0.1), material_type='Lambertian'), 
     sphere(vector3(150.0,0.0,150.0), 100.0, color(0.1,0.1,1.0), material_type='Reflective'), 
     sphere(vector3(300.0,0.0,300.0), 100.0, color(0.1,1.0,0.1), material_type='Reflective'), 
     sky(vector3(0.0,0.0,0.0), 100000.0, color(1.0,1.0,1.0)), 
@@ -385,7 +385,7 @@ def trace(r, bounces, intensity=1):
             object_normal = closest_object.normal(closest_hit_point)
 
         # Calculating color to return 
-        if bounces == 0 or closest_object.material_type == "Standard":
+        if bounces == 0 or closest_object.type == "Sky":
             color_to_return = closest_object.color
         
         elif closest_object.material_type == "Lambertian":
@@ -466,7 +466,10 @@ def trace(r, bounces, intensity=1):
         if intensity > 1:
             intensity = 1
 
-        return color_to_return * intensity * 0.5 + color_to_return * 0.5, closest_object
+        if closest_object.material_type == "Lambertian":
+            return color_to_return * intensity + color_to_return * 0.5, closest_object
+        elif closest_object.material_type == "Reflective":
+            return color_to_return * intensity * 0.5 + color_to_return * 0.5, closest_object
 
     return color(0,0,0), closest_object
 
