@@ -5,7 +5,7 @@
 - python3
 - numpy
 
-# Latest up to date file is parallel_rendering_bucker.py which has the follwing features
+## Latest up to date file is parallel_rendering_bucket.py which has the follwing features
 
 ## Includes:
 - Lambertian diffuse model
