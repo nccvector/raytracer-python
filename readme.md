@@ -1,5 +1,10 @@
 # Python implmentation of simple recursive raytracer
 
+## Running instruction:
+Do not run it in vscode, open a terminal, activate your environment and then execute
+The threads seem to not work when running script from inside vscode
+Read this file completely for information about materials and where to change them
+
 ## Requirements
 - opencv
 - python3
