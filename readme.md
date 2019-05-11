@@ -1,8 +1,9 @@
 # Python implmentation of raytracer
 
 ## Running instruction:
-Run the 'main.py' file from its directory.
-Also check demo images in repository.
+Run the files from their directory. There are seperate scene files for different material types, but you can combine them once you get hold of whats going on.
+
+#### Check images in output_results folder.
 
 ## Requirements
 - opencv
@@ -14,21 +15,22 @@ Also check demo images in repository.
 - Point lights
 - Directional lights
 - Supports spheres and planes
+- Lambertian diffuse
+- Reflections
+- Blurry reflections
+- Fresnel Reflections
 
 ## Will be included in future:
 - Multi thread rendering (removed temporarily)
-- Lambertian diffuse material (removed temporarily)
 - Dielectric material (removed temporarily)
-- Reflective material (removed temporarily)
 - Referactive material
-- Fresnel reflections (removed temporarily)
 
 ## Fixed issues:
 - Camera coordinate system
 - Code structure
 
 ## Example for usage: 
-#### You can define objects, lights and camera in the main file's main function like:
+#### You can define objects, lights and camera in the scene file's main function like:
 objects = [
         sphere(vector3(-300.0,0.0,300.0), 100.0, color(0.5,0.5,0.5)), 
         sphere(vector3(-150.0,0.0,150.0), 100.0, color(0.9,0.9,0.9)), 
