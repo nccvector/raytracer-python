@@ -1,9 +1,8 @@
-# Python implmentation of simple recursive raytracer
+# Python implmentation of raytracer
 
 ## Running instruction:
-Run the 'main.py' file from its directory
-The script tries to append the utils path to your system paths
-If import fails, try to add the utils path to your system paths manually
+Run the 'main.py' file from its directory.
+The script tries to append the utils path to your system paths, if import fails, try to add the utils path to your system paths manually
 
 ## Requirements
 - opencv
@@ -17,10 +16,12 @@ If import fails, try to add the utils path to your system paths manually
 - Supports spheres and planes
 
 ## Will be included in future:
+- Multi thread rendering (removed temporarily)
 - Lambertian diffuse material (removed temporarily)
 - Dielectric material (removed temporarily)
 - Reflective material (removed temporarily)
 - Referactive material
+- Fresnel reflections (removed temporarily)
 
 ## Fixed issues:
 - Camera coordinate system
