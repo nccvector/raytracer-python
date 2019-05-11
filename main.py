@@ -24,8 +24,8 @@ if __name__ == "__main__":
 
     # Defining list of lights
     lights = [
-        PointLight(Vector3(500.0, 500.0, -500.0), Color(1.0, 1.0, 1.0), intensity=0.5),
-        DirectionalLight(Vector3(0.0, 1000.0, 0.0), Vector3(0.3, -0.7, 0), Color(1.0, 1.0, 1.0), intensity=0.5),
+        # PointLight(Vector3(500.0, 500.0, -500.0), Color(1.0, 1.0, 1.0), intensity=0.5),
+        DirectionalLight(Vector3(0.0, 1000.0, 0.0), Vector3(0.3, -0.7, 0), Color(1.0, 1.0, 1.0), intensity=0.9),
     ]
 
     # Custom Camera params
@@ -69,3 +69,6 @@ if __name__ == "__main__":
 
     # When render finished, press any key to exit
     cv2.waitKey(0)
+
+    # Uncomment next line to save image after render
+    # cv2.imwrite('./output.jpg', image)
