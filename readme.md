@@ -1,7 +1,7 @@
 # Python implmentation of raytracer
 
 ## Running instruction:
-Run the filed from their directory. There are seperate scene files for different material types, but you can combine them once you get hold of whats going on.
+Run the files from their directory. There are seperate scene files for different material types, but you can combine them once you get hold of whats going on.
 
 #### Check images in output_results folder.
 
