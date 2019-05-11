@@ -1,7 +1,7 @@
 import cv2
 
 # Modules from utils directory
-from utils.Tracer import Trace
+from utils.Tracer import RecursiveScatteredTrace
 from utils.Vector import Vector3
 from utils.Ray import Ray
 from utils.Color import Color
@@ -13,19 +13,21 @@ from utils.Lights import *
 if __name__ == "__main__":
 
     # Defining list of objects
+    reflectness = 1
+    roughness = 0.5
     objects = [
-        Sphere(Vector3(-300.0,0.0,300.0), 100.0, Color(0.5,0.5,0.5), material_type='Reflective'), 
-        Sphere(Vector3(-150.0,0.0,150.0), 100.0, Color(0.9,0.9,0.9), material_type='Reflective'), 
+        Sphere(Vector3(-300.0,0.0,300.0), 100.0, Color(0.5,0.5,0.5), material_type='Lambertian'), 
+        Sphere(Vector3(-150.0,0.0,150.0), 100.0, Color(0.9,0.9,0.9), material_type='Lambertian'), 
         Sphere(Vector3(0.0,0.0,0.0), 100.0, Color(1.0,0.1,0.1), material_type='Lambertian'), 
-        Sphere(Vector3(150.0,0.0,150.0), 100.0, Color(0.1,0.1,1.0), material_type='Reflective'), 
-        Sphere(Vector3(300.0,0.0,300.0), 100.0, Color(0.1,1.0,0.1), material_type='Reflective'), 
-        Plane(Vector3(0.0,-100.0, 0.0), Vector3(0.0,1.0,0.0), Color(1.0,1.0,1.0), material_type='Reflective'),
+        Sphere(Vector3(150.0,0.0,150.0), 100.0, Color(0.1,0.1,1.0), material_type='Lambertian'), 
+        Sphere(Vector3(300.0,0.0,300.0), 100.0, Color(0.1,1.0,0.1), material_type='Lambertian'), 
+        Plane(Vector3(0.0,-100.0, 0.0), Vector3(0.0,1.0,0.0), Color(1.0,1.0,1.0), material_type='Lambertian'),
     ]
 
     # Defining list of lights
     lights = [
-        # PointLight(Vector3(500.0, 500.0, -500.0), Color(1.0, 1.0, 1.0), intensity=0.5),
-        DirectionalLight(Vector3(0.0, 1000.0, 0.0), Vector3(0.3, -0.7, 0), Color(1.0, 1.0, 1.0), intensity=0.9),
+        PointLight(Vector3(500.0, 500.0, -500.0), Color(1.0, 1.0, 1.0), intensity=0.5),
+        DirectionalLight(Vector3(0.0, 1000.0, 0.0), Vector3(0.3, -0.7, 0), Color(1.0, 1.0, 1.0), intensity=0.5),
     ]
 
     # Custom Camera params
@@ -56,7 +58,7 @@ if __name__ == "__main__":
             ray_direction = Vector3.normalize(frame_point - cam.origin)
             r = Ray(cam.origin, ray_direction)
             
-            col = Trace(r, objects, lights)
+            col = RecursiveScatteredTrace(r, objects, lights, bounces=3, samples=3) # Recursive Scattered Reflective trace
 
             cam.canvas[y,x,2] = col.r * 255
             cam.canvas[y,x,1] = col.g * 255

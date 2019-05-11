@@ -2,12 +2,14 @@ import math
 from utils.Vector import Vector3
 
 class Plane():
-    def __init__(self, position, normal, color, material_type=None):
+    def __init__(self, position, normal, color, material_type=None, reflectness=1, roughness=0.5):
         self.type = 'Plane'
         self.position = position
         self.normal = normal
         self.color = color
         self.material_type = material_type
+        self.reflectness = reflectness
+        self.roughness = roughness
 
     def calculate_normal(self, _):
         """The surface normal at the given point on the plane"""
@@ -28,12 +30,14 @@ class Plane():
             return r.origin + (r.direction * t)
 
 class Sphere():
-    def __init__(self, position, radius, color, material_type=None):
+    def __init__(self, position, radius, color, material_type=None, reflectness=1, roughness=0.5):
         self.type = 'Sphere'
         self.position = position
         self.radius = radius
         self.color = color
         self.material_type = material_type
+        self.reflectness = reflectness
+        self.roughness = roughness
 
     def calculate_normal(self, p):
         """The surface normal at the given point on the sphere"""
