@@ -3,9 +3,7 @@
 ## Running instruction:
 Run the 'main.py' file from its directory.
 
-#
-
-Check images in output_results folder.
+#### Check images in output_results folder.
 
 ## Requirements
 - opencv
