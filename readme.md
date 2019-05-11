@@ -1,41 +1,53 @@
 # Python implmentation of simple recursive raytracer
 
 ## Running instruction:
-Do not run it in vscode, open a terminal, activate your environment and then execute
-The threads seem to not work when running script from inside vscode
-Read this file completely for information about materials and where to change them
+Run the 'main.py' file from its directory
+The script tries to append the utils path to your system paths
+If import fails, try to add the utils path to your system paths manually
 
 ## Requirements
 - opencv
 - python3
 - numpy
 
-## Latest up to date file is parallel_rendering_bucket.py which has the follwing features
-
-## Includes:
-- Lambertian diffuse model
-- Fresnel reflections
+## Features
+- Supports multiple light sources
+- Point lights
+- Directional lights
+- Supports spheres and planes
 
 ## Will be included in future:
-- Referaction
+- Lambertian diffuse material (removed temporarily)
+- Dielectric material (removed temporarily)
+- Reflective material (removed temporarily)
+- Referactive material
 
-## Issues:
-- Camera coordinate system is messed (will be fixed soon)
+## Fixed issues:
+- Camera coordinate system
+- Code structure
 
-## Material types:
-You can specify the following material types at the time of creating an object
-- Lambertian
-- Reflective
-
-### Example: 
+## Example for usage: 
+#### You can define objects, lights and camera in the main file's main function like:
 objects = [
-    sphere(vector3(-300.0,0.0,300.0), 100.0, color(0.2,0.2,0.2), material_type='Reflective'), 
-    sphere(vector3(-150.0,0.0,150.0), 100.0, color(0.9,0.9,0.9), material_type='Lambertian'), 
-    sphere(vector3(0.0,0.0,0.0), 100.0, color(1.0,0.1,0.1), material_type='Lambertian'), 
-    sky(vector3(0.0,0.0,0.0), 100000.0, color(1.0,1.0,1.0)), 
-    plane(vector3(0.0,-100.0, 0.0), vector3(0.0,1.0,0.0), color(1.0,1.0,1.0), material_type='Reflective'),
-]
+        sphere(vector3(-300.0,0.0,300.0), 100.0, color(0.5,0.5,0.5)), 
+        sphere(vector3(-150.0,0.0,150.0), 100.0, color(0.9,0.9,0.9)), 
+        sphere(vector3(0.0,0.0,0.0), 100.0, color(1.0,0.1,0.1)), 
+        sphere(vector3(150.0,0.0,150.0), 100.0, color(0.1,0.1,1.0)), 
+        sphere(vector3(300.0,0.0,300.0), 100.0, color(0.1,1.0,0.1)), 
+        plane(vector3(0.0,-100.0, 0.0), vector3(0.0,1.0,0.0), color(1.0,1.0,1.0)),
+    ]
 
-### In the current file the materials are defined at line number 332 (in future things are supposed be placed properly though)
+lights = [
+        pointLight(vector3(500.0, 500.0, -500.0), color(1.0, 1.0, 1.0), intensity=0.5),
+        directionalLight(vector3(0.0, 1000.0, 0.0), vector3(0.3, -0.7, 0), color(1.0, 1.0, 1.0), intensity=0.5),
+    ]
 
-### If for some reason you cant run the latest file, i have included my first, second, third and fourth attempts, which lack features but you can try them out
+cam = camera(
+        camera_origin=vector3(0.0,90.0,-400.0),
+        camera_forward=vector3(0,0,1),
+        camera_right=vector3(1,0,0),
+        camera_down=vector3(0,-1,0),
+        fov=65,
+        render_size=render_size,
+        samples=samples
+    )
