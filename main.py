@@ -1,5 +1,4 @@
 import cv2
-import sys
 
 # Modules from utils directory
 from utils.Tracer import Trace
