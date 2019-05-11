@@ -2,7 +2,6 @@
 
 ## Running instruction:
 Run the 'main.py' file from its directory.
-The script tries to append the utils path to your system paths, if import fails, try to add the utils path to your system paths manually
 
 ## Requirements
 - opencv
