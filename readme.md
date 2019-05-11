@@ -16,6 +16,7 @@ The script tries to append the utils path to your system paths, if import fails,
 - Supports spheres and planes
 
 ## Will be included in future:
+- Multi thread rendering (removed temporarily)
 - Lambertian diffuse material (removed temporarily)
 - Dielectric material (removed temporarily)
 - Reflective material (removed temporarily)
