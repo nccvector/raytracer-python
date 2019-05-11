@@ -2,7 +2,7 @@
 
 ## Running instruction:
 Run the 'main.py' file from its directory.
-Also check demo images in repository.
+Check images in output_results folder.
 
 ## Requirements
 - opencv
