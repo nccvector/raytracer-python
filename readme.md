@@ -1,4 +1,4 @@
-# Python implmentation of simple recursive raytracer
+# Python implmentation of raytracer
 
 ## Running instruction:
 Run the 'main.py' file from its directory
@@ -21,6 +21,7 @@ If import fails, try to add the utils path to your system paths manually
 - Dielectric material (removed temporarily)
 - Reflective material (removed temporarily)
 - Referactive material
+- Fresnel reflections (removed temporarily)
 
 ## Fixed issues:
 - Camera coordinate system
