@@ -1,13 +1,13 @@
 import math
 import numpy as np
-from vector import vector3
+from utils.Vector import Vector3
 
-class camera():
+class Camera():
     def __init__(self, 
-                camera_origin=vector3(0,0,0),
-                camera_forward=vector3(0,0,1),
-                camera_right=vector3(1,0,0),
-                camera_down=vector3(0,-1,0), 
+                camera_origin=Vector3(0,0,0),
+                camera_forward=Vector3(0,0,1),
+                camera_right=Vector3(1,0,0),
+                camera_down=Vector3(0,-1,0), 
                 fov=65, 
                 render_size=(640,480), 
                 samples=1

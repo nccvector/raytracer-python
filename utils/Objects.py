@@ -1,7 +1,7 @@
 import math
-from vector import vector3
+from utils.Vector import Vector3
 
-class plane():
+class Plane():
     def __init__(self, position, normal, color, material_type=None):
         self.type = 'Plane'
         self.position = position
@@ -10,7 +10,7 @@ class plane():
         self.material_type = material_type
 
     def calculate_normal(self, _):
-        """The surface normal at the given point on the sphere"""
+        """The surface normal at the given point on the plane"""
         return self.normal
     
     def hit(self, r):
@@ -27,7 +27,7 @@ class plane():
         else:
             return r.origin + (r.direction * t)
 
-class sphere():
+class Sphere():
     def __init__(self, position, radius, color, material_type=None):
         self.type = 'Sphere'
         self.position = position
@@ -37,7 +37,7 @@ class sphere():
 
     def calculate_normal(self, p):
         """The surface normal at the given point on the sphere"""
-        return vector3.normalize(p - self.position)
+        return Vector3.normalize(p - self.position)
 
     def hit(self, r):
         """The ray t value of the first intersection point of the

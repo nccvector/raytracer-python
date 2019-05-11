@@ -1,51 +1,45 @@
 import cv2
 import sys
 
-# Appending utils to system paths
-try:
-    sys.path.append('./utils/')
-except:
-    pass
-
 # Modules from utils directory
-from trace_file import trace
-from vector import vector3
-from ray import ray
-from color import color
-from camera import camera
-from objects import *
-from lights import *
+from utils.Tracer import Trace
+from utils.Vector import Vector3
+from utils.Ray import Ray
+from utils.Color import Color
+from utils.Camera import Camera
+from utils.Objects import *
+from utils.Lights import *
     
 
 if __name__ == "__main__":
 
     # Defining list of objects
     objects = [
-        sphere(vector3(-300.0,0.0,300.0), 100.0, color(0.5,0.5,0.5), material_type='Reflective'), 
-        sphere(vector3(-150.0,0.0,150.0), 100.0, color(0.9,0.9,0.9), material_type='Reflective'), 
-        sphere(vector3(0.0,0.0,0.0), 100.0, color(1.0,0.1,0.1), material_type='Lambertian'), 
-        sphere(vector3(150.0,0.0,150.0), 100.0, color(0.1,0.1,1.0), material_type='Reflective'), 
-        sphere(vector3(300.0,0.0,300.0), 100.0, color(0.1,1.0,0.1), material_type='Reflective'), 
-        plane(vector3(0.0,-100.0, 0.0), vector3(0.0,1.0,0.0), color(1.0,1.0,1.0), material_type='Reflective'),
+        Sphere(Vector3(-300.0,0.0,300.0), 100.0, Color(0.5,0.5,0.5), material_type='Reflective'), 
+        Sphere(Vector3(-150.0,0.0,150.0), 100.0, Color(0.9,0.9,0.9), material_type='Reflective'), 
+        Sphere(Vector3(0.0,0.0,0.0), 100.0, Color(1.0,0.1,0.1), material_type='Lambertian'), 
+        Sphere(Vector3(150.0,0.0,150.0), 100.0, Color(0.1,0.1,1.0), material_type='Reflective'), 
+        Sphere(Vector3(300.0,0.0,300.0), 100.0, Color(0.1,1.0,0.1), material_type='Reflective'), 
+        Plane(Vector3(0.0,-100.0, 0.0), Vector3(0.0,1.0,0.0), Color(1.0,1.0,1.0), material_type='Reflective'),
     ]
 
     # Defining list of lights
     lights = [
-        pointLight(vector3(500.0, 500.0, -500.0), color(1.0, 1.0, 1.0), intensity=0.5),
-        # directionalLight(vector3(0.0, 1000.0, 0.0), vector3(0.3, -0.7, 0), color(1.0, 1.0, 1.0), intensity=0.5),
+        PointLight(Vector3(500.0, 500.0, -500.0), Color(1.0, 1.0, 1.0), intensity=0.5),
+        DirectionalLight(Vector3(0.0, 1000.0, 0.0), Vector3(0.3, -0.7, 0), Color(1.0, 1.0, 1.0), intensity=0.5),
     ]
 
-    # Custom camera params
+    # Custom Camera params
     render_size = (640, 480)
     samples = 1
     down_look_param = 0.15
-    camera_forward = vector3(0, -down_look_param, 1-down_look_param)
-    camera_right = vector3(1, 0, 0)
+    camera_forward = Vector3(0, -down_look_param, 1-down_look_param)
+    camera_right = Vector3(1, 0, 0)
     camera_down = camera_forward % camera_right
 
-    # Defining camera objects
-    cam = camera(
-        camera_origin=vector3(0.0,90.0,-400.0),
+    # Defining Camera objects
+    cam = Camera(
+        camera_origin=Vector3(0.0,90.0,-400.0),
         camera_forward=camera_forward,
         camera_right=camera_right,
         camera_down=camera_down,
@@ -60,10 +54,10 @@ if __name__ == "__main__":
 
             frame_point = cam.canvas_origin + (cam.right * (x-cam.canvas_size[0]/2)) + (cam.down * (y-cam.canvas_size[1]/2))
 
-            ray_direction = vector3.normalize(frame_point - cam.origin)
-            r = ray(cam.origin, ray_direction)
+            ray_direction = Vector3.normalize(frame_point - cam.origin)
+            r = Ray(cam.origin, ray_direction)
             
-            col = trace(r, objects, lights)
+            col = Trace(r, objects, lights)
 
             cam.canvas[y,x,2] = col.r * 255
             cam.canvas[y,x,1] = col.g * 255
