@@ -2,6 +2,9 @@
 
 ## Running instruction:
 Run the 'main.py' file from its directory.
+
+#
+
 Check images in output_results folder.
 
 ## Requirements
@@ -14,14 +17,15 @@ Check images in output_results folder.
 - Point lights
 - Directional lights
 - Supports spheres and planes
+- Lambertian diffuse
+- Reflections
+- Blurry reflections
+- Fresnel Reflections
 
 ## Will be included in future:
 - Multi thread rendering (removed temporarily)
-- Lambertian diffuse material (removed temporarily)
 - Dielectric material (removed temporarily)
-- Reflective material (removed temporarily)
 - Referactive material
-- Fresnel reflections (removed temporarily)
 
 ## Fixed issues:
 - Camera coordinate system
