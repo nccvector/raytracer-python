@@ -2,13 +2,16 @@
 
 ## Results
 
-- Simple scene with two lights (Directional and Spot light)
+### Simple scene with two lights (Directional and Spot light):
 <img src="output_results/demo_with_both_lights.jpg" align="middle" />
-- Blurry reflections
+
+### Blurry reflections:
 <img src="output_results/demo_with_blurry_reflections.jpg" align="middle" />
-- Fresnel reflections
-<img src="output_results/demo_with_fresnel_reflections.jpg" align="middle" />
-- Un-nerfed lambertian diffuse
+
+### Fresnel reflections:
+<img src="output_results/demo_with_fresnel_reflection.jpg" align="middle" />
+
+### Un-nerfed lambertian diffuse:
 <img src="output_results/demo_lambertian_reflection.jpg" align="middle" />
 
 ## Running instruction:
