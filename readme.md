@@ -1,5 +1,16 @@
 # Python implmentation of raytracer
 
+## Results
+
+- Simple scene with two lights (Directional and Spot light)
+<img src="output_results/demo_with_both_lights.jpg" align="middle" />
+- Blurry reflections
+<img src="output_results/demo_with_blurry_reflections.jpg" align="middle" />
+- Fresnel reflections
+<img src="output_results/demo_with_fresnel_reflections.jpg" align="middle" />
+- Un-nerfed lambertian diffuse
+<img src="output_results/demo_lambertian_reflection.jpg" align="middle" />
+
 ## Running instruction:
 Run the files from their directory. There are seperate scene files for different material types, but you can combine them once you get hold of whats going on.
 
