@@ -4,5 +4,12 @@ class Ray:
         self.origin = origin
         self.direction = direction
 
-    def invert(self):
+    def inverse(self):
+        """
+        Returns the ray with its direction inverted
+        
+        Returns:
+            Ray: inverted ray object
+
+        """
         return Ray(self.origin, self.direction.invert())

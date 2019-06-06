@@ -1,28 +1,27 @@
 import math
+from utils.Materials import StandardMaterial
 from utils.Vector import Vector3
 
 class Plane():
-    def __init__(self, position, normal, color, material_type=None, reflectness=1, roughness=0.5):
-        self.type = 'Plane'
+    def __init__(self, position, normal, material):
+        self.type = 'Object'
+        self.subtype = 'Plane'
         self.position = position
         self.normal = normal
-        self.color = color
-        self.material_type = material_type
-        self.reflectness = reflectness
-        self.roughness = roughness
+        self.material = material
 
     def calculate_normal(self, _):
         """The surface normal at the given point on the plane"""
         return self.normal
     
     def hit(self, r):
-        d = self.position * self.normal.invert()
-        denom = (r.direction * self.normal)
+        d = Vector3.dot(self.position, self.normal.invert())
+        denom = Vector3.dot(r.direction, self.normal)
 
         if denom == 0:
             t = -math.inf
         else:
-            t = -(d + r.origin * self.normal) / denom
+            t = -(d + Vector3.dot(r.origin, self.normal)) / denom
 
         if t < 0:
             return None
@@ -30,14 +29,12 @@ class Plane():
             return r.origin + (r.direction * t)
 
 class Sphere():
-    def __init__(self, position, radius, color, material_type=None, reflectness=1, roughness=0.5):
-        self.type = 'Sphere'
+    def __init__(self, position, radius, material):
+        self.type = 'Object'
+        self.subtype = 'Sphere'
         self.position = position
         self.radius = radius
-        self.color = color
-        self.material_type = material_type
-        self.reflectness = reflectness
-        self.roughness = roughness
+        self.material = material
 
     def calculate_normal(self, p):
         """The surface normal at the given point on the sphere"""
@@ -46,10 +43,10 @@ class Sphere():
     def hit(self, r):
         """The ray t value of the first intersection point of the
         ray with self, or None if no intersection occurs"""
-        a = r.direction * r.direction
+        a = Vector3.dot(r.direction, r.direction)
         f = r.origin - self.position
-        b = 2 * (f * r.direction)
-        c = (f * f) - (self.radius * self.radius)
+        b = 2 * Vector3.dot(f, r.direction)
+        c = Vector3.dot(f, f) - self.radius * self.radius
 
         discriminant = b * b - 4 * a * c
 

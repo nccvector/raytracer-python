@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 class Vector3():
 
@@ -20,7 +21,9 @@ class Vector3():
 
         '''
         
-        k = 1/math.sqrt(self.x*self.x + self.y*self.y + self.z*self.z)
+        denom = math.sqrt(self.x*self.x + self.y*self.y + self.z*self.z)
+        denom = 0.00001 if denom <= 0 else denom
+        k = 1/denom
         return Vector3(self.x*k, self.y*k, self.z*k)
 
 
@@ -113,9 +116,7 @@ class Vector3():
         '''
         Returns: 
         
-            scalar if passed with Vector3
-
-            Vector3 if passed with scalar
+            Vector3
 
         Description:
 
@@ -126,12 +127,29 @@ class Vector3():
         '''
 
         if type(other).__name__ == 'Vector3':
-            return self.x*other.x + self.y*other.y + self.z*other.z
+            return Vector3(self.x*other.x , self.y*other.y , self.z*other.z)
         else:
             return Vector3(self.x*other, self.y*other, self.z*other)
 
 
-    def __mod__(self, other):  # Operator %
+    def dot(self, other):
+        '''
+        Returns: 
+        
+            Vector3
+
+        Description:
+
+            if passed with Vector3, performs dot product of the two
+
+            if passed with scalar, multiplies scalar with all components of vector
+
+        '''
+        
+        return np.dot([self.x,self.y,self.z], [other.x,other.y,other.z])
+
+
+    def cross(self, other):
         '''
         Returns: 
         
@@ -142,5 +160,5 @@ class Vector3():
             performs cross product
 
         '''
-
-        return Vector3(other.y*self.z-other.z*self.y, -(other.x*self.z-other.z-self.x), other.x*self.y-other.y-self.x)
+        cross = np.cross([self.x,self.y,self.z], [other.x,other.y,other.z])
+        return Vector3(cross[0], cross[1], cross[2])
